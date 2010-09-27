@@ -10,12 +10,12 @@ body {
     padding-top: 20px;
 }
 
-#header img {
+header img {
     padding: 1em;
     background: #fff;
 }
 
-#content {
+section {
     margin-top: 1em;
     font-size: 120%;
     padding: 20px;
@@ -41,9 +41,6 @@ a:visited {
 /* Navigation */
 nav { 
 	float: right;
-}
-
-nav { 
 	background-color: white; 
 	padding: 0 0.7em; 
 	white-space: nowrap;
