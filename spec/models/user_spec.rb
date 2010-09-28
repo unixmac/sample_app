@@ -136,7 +136,7 @@ describe User do
     describe "authenticate method" do
 
       # it "should exist" do 
-      #  @user.should respond_to(:authenticate) 
+      #    @user.should respond_to(:authenticate) 
       # end
       
       it "should return nil on email/password mismatch" do 
