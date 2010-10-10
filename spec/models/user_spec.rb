@@ -6,12 +6,12 @@ describe User do
     @attr = { 
      :name => "Example User", 
      :email => "user@example.com", 
-     :password => "mypass",
-     :password_confirmation => "mypass"
+      :password => "foobar",
+      :password_confirmation => "foobar"
     }
   end
   
-  it "should create a new instance given valid attributes" do 
+  it "should create a new instance given a valid attribute" do
     User.create!(@attr)
   end
 
@@ -34,15 +34,17 @@ describe User do
   it "should accept valid email addresses" do
     addresses = %w[user@foo.com THE_USER@foo.bar.org first.last@foo.jp] 
     addresses.each do |address|
-    valid_email_user = User.new(@attr.merge(:email => address))
-    valid_email_user.should be_valid end
+      valid_email_user = User.new(@attr.merge(:email => address))
+      valid_email_user.should be_valid
+    end
   end
 
   it "should reject invalid email addresses" do 
     addresses = %w[user@foo,com user_at_foo.org example.user@foo.] 
     addresses.each do |address|
-    invalid_email_user = User.new(@attr.merge(:email => address))
-    invalid_email_user.should_not be_valid end
+      invalid_email_user = User.new(@attr.merge(:email => address))
+      invalid_email_user.should_not be_valid
+    end
   end
 
   it "should reject duplicate email addresses" do
@@ -61,7 +63,7 @@ describe User do
   
   describe "passwords" do
 
-    before (:each) do
+    before(:each) do
       @user = User.new(@attr)
     end
           
@@ -109,7 +111,7 @@ describe User do
       @user.should respond_to(:encrypted_password)
     end
    
-    it "should set the encrypted password" do
+    it "should set the encrypted password attribute" do
       @user.encrypted_password.should_not be_blank 
     end
     
@@ -119,9 +121,9 @@ describe User do
     
     describe "has_password? method" do
 
-      # it "should exist" do 
-      #  @user.should respond_to(:has_password) 
-      # end
+      it "should exist" do
+        @user.should respond_to(:has_password?)
+      end
            
       it "should return true if the passwords match" do 
         @user.has_password?(@attr[:password]).should be_true
@@ -130,20 +132,19 @@ describe User do
       it "should return false if the passwords don't match" do 
         @user.has_password?("invalid").should be_false
       end 
-    
     end
   
     describe "authenticate method" do
 
-      # it "should exist" do 
-      #    @user.should respond_to(:authenticate) 
-      # end
+      it "should exist" do
+        User.should respond_to(:authenticate)
+      end
       
       it "should return nil on email/password mismatch" do 
         User.authenticate(@attr[:email], "wrongpass").should be_nil
       end
       
-      it "should return nil for email address with no user" do 
+      it "should return nil for an email address with no user" do
         User.authenticate("bar@foo.com", @attr[:password]).should be_nil
       end
       
@@ -197,8 +198,5 @@ describe User do
           end.should raise_error(ActiveRecord::RecordNotFound)
         end
       end
-          
-          
     end  
-        
 end
