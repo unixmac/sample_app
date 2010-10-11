@@ -16,7 +16,7 @@ describe MicropostsController do
   end
   
   describe "POST 'create'" do
-   
+    
     before(:each) do
       @user = test_sign_in(Factory(:user))
     end
@@ -32,25 +32,25 @@ describe MicropostsController do
           post :create, :micropost => @attr
         end.should_not change(Micropost, :count)
       end
-
+      
       it "should re-render the home page" do
         post :create, :micropost => @attr
         response.should render_template('pages/home')
       end
     end
-  
-    describe "success" do
 
+    describe "success" do
+      
       before(:each) do
         @attr = { :content => "Lorem ipsum dolor sit amet" }
       end
-
+      
       it "should create a micropost" do
         lambda do
           post :create, :micropost => @attr
         end.should change(Micropost, :count).by(1)
       end
-         
+      
       it "should redirect to the root path" do
         post :create, :micropost => @attr
         response.should redirect_to(root_path)

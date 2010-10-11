@@ -5,14 +5,14 @@ describe Relationship do
   before(:each) do
     @follower = Factory(:user)
     @followed = Factory(:user, :email => Factory.next(:email))
-
+    
     @attr = { :followed_id => @followed.id }
-   end
-
-   it "should create a new instance with valid attributes" do
-     @follower.relationships.create!(@attr)
-   end
-
+  end
+  
+  it "should create a new instance with valid attributes" do
+    @follower.relationships.create!(@attr)
+  end
+  
   describe "follow methods" do
     
     before(:each) do

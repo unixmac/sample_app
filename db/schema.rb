@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20101011171811) do
     t.datetime "updated_at"
   end
 
+  add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
+
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
