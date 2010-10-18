@@ -13,7 +13,7 @@ group :development do
   gem 'annotate-models', '1.0.4'
 	gem 'faker', '0.3.1'
 	gem 'haml'
-	gem 'josevalim-rails-footnotes'
+	# gem 'josevalim-rails-footnotes'
 end
 
 group :test do 
